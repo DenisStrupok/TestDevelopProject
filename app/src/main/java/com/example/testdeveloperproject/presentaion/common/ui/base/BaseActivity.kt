@@ -1,4 +1,4 @@
-package com.example.testdeveloperproject.common.ui.base
+package com.example.testdeveloperproject.presentaion.common.ui.base
 
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
