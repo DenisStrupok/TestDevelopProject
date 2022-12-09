@@ -1,9 +1,8 @@
-package com.example.testdeveloperproject.features.main
+package com.example.testdeveloperproject.presentaion.features.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.testdeveloperproject.R
-import com.example.testdeveloperproject.common.ui.base.BaseActivity
+import com.example.testdeveloperproject.presentaion.common.ui.base.BaseActivity
 
 class MainActivity : BaseActivity(R.layout.activity_main) {
 
