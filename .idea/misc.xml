@@ -3,13 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/s/AndroidStudioProjects/TestDeveloperProject/app/src/main/res/drawable/rounded_green_line.xml" value="0.13" />
         <entry key="..\:/Users/s/AndroidStudioProjects/TestDeveloperProject/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/s/AndroidStudioProjects/TestDeveloperProject/app/src/main/res/layout/fragment_detail.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/s/AndroidStudioProjects/TestDeveloperProject/app/src/main/res/layout/fragment_home.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/s/AndroidStudioProjects/TestDeveloperProject/app/src/main/res/layout/item_gif_rv.xml" value="0.17074275362318841" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -1,7 +1,9 @@
 package com.example.testdeveloperproject
 
 import android.app.Application
-import com.example.testdeveloperproject.presentaion.common.appModule
+import com.example.data.di.dataModule
+import com.example.domain.di.domainModule
+import com.example.testdeveloperproject.common.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -20,6 +22,8 @@ class App : Application() {
             androidContext(this@App)
             modules(
                 *appModule,
+                *domainModule,
+                *dataModule
             )
         }
     }
