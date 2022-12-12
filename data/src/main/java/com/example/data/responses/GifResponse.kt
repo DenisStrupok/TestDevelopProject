@@ -2,6 +2,7 @@ package com.example.data.responses
 
 import com.example.domain.model.Gif
 import com.example.domain.model.GifsModel
+import com.example.domain.model.ImageModel
 import com.example.domain.model.ModelMapper
 import com.google.gson.annotations.SerializedName
 
@@ -9,14 +10,17 @@ data class GifResponse(
     @SerializedName("id")
     val id: String,
     @SerializedName("url")
-    val url: String?
+    val url: String?,
+    @SerializedName("images")
+    val images: ImageResponse
 ){
     companion object: ModelMapper<Gif, GifResponse>{
         override fun mapTo(model: Gif): GifResponse {
             return with(model){
                 GifResponse(
-                    id = model.id,
-                    url = model.url
+                    id = id,
+                    url = url,
+                    images = images.let { ImageResponse.mapTo(it) }
                 )
             }
         }
@@ -24,8 +28,9 @@ data class GifResponse(
         override fun mapToDomain(model: GifResponse): Gif {
             return with(model){
                 Gif(
-                    id = model.id,
-                    url = model.url
+                    id = id,
+                    url = url,
+                    images = images.let { ImageResponse.mapToDomain(it) }
                 )
             }
         }

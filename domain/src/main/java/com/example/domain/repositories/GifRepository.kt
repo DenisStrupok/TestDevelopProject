@@ -4,5 +4,5 @@ import com.example.domain.model.GifsModel
 
 interface GifRepository {
 
-    suspend fun getGifsList(): GifsModel
+    suspend fun getGifsList(limit: Int, offset: Int): GifsModel
 }

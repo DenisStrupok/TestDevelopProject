@@ -1,16 +1,25 @@
 package com.example.domain.usecases
 
+import com.example.domain.model.GifsModel
 import com.example.domain.repositories.GifRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class GetGifsUseCase(
     private val gifRepository: GifRepository
-) {
-    operator fun invoke(uiDispatcher: CoroutineScope): Job {
-        return uiDispatcher.launch {
-            gifRepository.getGifsList()
+): BaseUseCase<GifsModel, GetGifsUseCase.Params>() {
+
+    override suspend fun remoteWork(params: Params?): GifsModel {
+        return withContext(Dispatchers.IO){
+            gifRepository.getGifsList(
+                params!!.limit,
+                params.offset
+            )
         }
     }
+
+    class Params(
+        val limit: Int,
+        val offset: Int
+    )
+
 }

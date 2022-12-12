@@ -2,7 +2,10 @@ package com.example.testdeveloperproject.features.home
 
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.GridLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.bumptech.glide.Glide
+import com.example.domain.model.Gif
 import com.example.testdeveloperproject.R
 import com.example.testdeveloperproject.common.ui.base.BaseFragment
 import com.example.testdeveloperproject.databinding.FragmentHomeBinding
@@ -15,25 +18,40 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     private val binding: FragmentHomeBinding by viewBinding(FragmentHomeBinding::bind)
     private val viewModel by viewModel<HomeVM>()
+    private lateinit var gifsAdapter: GifsAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        CoroutineScope(Dispatchers.IO).launch {
-            viewModel.getGifsList()
-        }
+        viewModel.getGifsList()
+
+        initAdapter()
         initViews()
 
         observerGifs()
     }
 
-    private fun initViews() {
+    private fun initAdapter(){
+        GifsAdapter(requireContext()).apply {
+            gifsAdapter = this
+            onItemClick = {
+                val test = it
+                test.toString()
+            }
+            setHasStableIds(true)
+        }
+    }
 
+    private fun initViews() {
+        binding.homeGifsRV.apply{
+            adapter = gifsAdapter
+            this.layoutManager = GridLayoutManager(requireContext(), 2)
+        }
     }
 
     private fun observerGifs(){
-        viewModel.gifs.observe(viewLifecycleOwner){ gifs->
-            val s = gifs
-            val sss= 4
+        viewModel.gifs.observe(viewLifecycleOwner){ gifs ->
+            gifsAdapter.items = gifs.data
+            gifsAdapter.notifyDataSetChanged()
         }
     }
 }
