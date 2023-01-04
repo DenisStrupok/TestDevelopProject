@@ -1,9 +1,6 @@
 package com.example.data.responses
 
-import com.example.domain.model.Gif
-import com.example.domain.model.GifsModel
-import com.example.domain.model.ImageModel
-import com.example.domain.model.ModelMapper
+import com.example.domain.model.*
 import com.google.gson.annotations.SerializedName
 
 data class GifResponse(
@@ -38,13 +35,15 @@ data class GifResponse(
 }
 
 data class ListGifResponse(
-    val data: List<GifResponse>?
+    val data: List<GifResponse>?,
+    val pagination: PaginationResponse?
 ) {
     companion object: ModelMapper<GifsModel, ListGifResponse> {
         override fun mapTo(model: GifsModel): ListGifResponse {
             return with(model){
                 ListGifResponse(
-                    data = data?.map { GifResponse.mapTo(it) }
+                    data = data?.map { GifResponse.mapTo(it) },
+                    pagination = paginationModel?.let { PaginationResponse.mapTo(it) }
                 )
             }
         }
@@ -52,7 +51,8 @@ data class ListGifResponse(
         override fun mapToDomain(model: ListGifResponse): GifsModel {
             return with(model){
                 GifsModel(
-                    data = data?.map { GifResponse.mapToDomain(it) }
+                    data = data?.map { GifResponse.mapToDomain(it) },
+                    paginationModel = pagination?.let { PaginationResponse.mapToDomain(it) }
                 )
             }
         }
