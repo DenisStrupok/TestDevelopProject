@@ -27,4 +27,4 @@ private val networkModule = module {
             .build()
     }
 }
-val dataModule = arrayOf(repositoriesModule,  networkModule, serviceModule)
+val dataModule = arrayOf(repositoriesModule, networkModule, serviceModule)
