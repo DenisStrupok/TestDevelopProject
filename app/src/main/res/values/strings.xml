@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">TestDeveloperProject</string>
+    <string name="app_name">TestDeveloperProject</string>#
+
+    <string name="home_fragment_enter_name_gif">Enter name</string>
 </resources>
