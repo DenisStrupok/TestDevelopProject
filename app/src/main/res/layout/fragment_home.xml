@@ -9,13 +9,14 @@
         android:id="@+id/homeEnterGifNameEd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="text"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp"
         android:background="@drawable/rounded_green_line"
         android:padding="8dp"
-        android:hint="Enter gif"/>
+        android:hint="@string/home_fragment_enter_name_gif"/>
 
 
     <androidx.core.widget.NestedScrollView

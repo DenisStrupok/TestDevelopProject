@@ -40,7 +40,7 @@ class HomeVM(
         )
     }
 
-    fun findGifByName(nameGif: CharSequence?) {
+    fun findGifByName(nameGif: CharSequence?, offset: Int = 0) {
         _nameGif.value = nameGif.toString()
         if ((nameGif?.length ?: 0) > MINIMAL_SIZE_NAME) {
             gifs.value?.data?.clear()
@@ -55,10 +55,18 @@ class HomeVM(
                 params = FindGifByNameUseCase.Params(
                     name = this._nameGif.value!!,
                     limit = LIMIT_PAGE_SIZE,
-                    offset = 10
+                    offset = 1
                 )
             )
         }
 
+    }
+
+    fun changeSelectedGif(selectedGifId: String) {
+        gifs.value?.data?.forEach { gif->
+            if (gif.id == selectedGifId){
+                gif.isSelectedGif = true
+            }
+        }
     }
 }

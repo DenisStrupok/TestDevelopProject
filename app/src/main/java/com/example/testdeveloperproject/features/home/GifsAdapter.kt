@@ -12,7 +12,7 @@ import com.example.testdeveloperproject.databinding.ItemGifRvBinding
 
 class GifsAdapter(private val context: Context) : RecyclerView.Adapter<GifsAdapter.ViewHolder>() {
 
-    var onItemClick: ((Gif) -> Unit)? = null
+    var onItemClick: ((String) -> Unit)? = null
 
     var items = mutableListOf<Gif>()
 
@@ -45,7 +45,7 @@ class GifsAdapter(private val context: Context) : RecyclerView.Adapter<GifsAdapt
         fun bind(item: Gif) {
             Glide.with(context).load(item.images.original?.url).into(binding.itemGifImg)
             binding.itemGifContainer.setOnClickListener {
-                onItemClick?.invoke(item)
+                onItemClick?.invoke(item.id)
             }
         }
     }

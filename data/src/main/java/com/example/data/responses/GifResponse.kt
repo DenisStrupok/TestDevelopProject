@@ -51,7 +51,7 @@ data class ListGifResponse(
         override fun mapToDomain(model: ListGifResponse): GifsModel {
             return with(model){
                 GifsModel(
-                    data = data?.map { GifResponse.mapToDomain(it) },
+                    data = data?.map { GifResponse.mapToDomain(it) } as MutableList<Gif>?,
                     paginationModel = pagination?.let { PaginationResponse.mapToDomain(it) }
                 )
             }
