@@ -19,8 +19,6 @@
         android:name="com.example.testdeveloperproject.features.detail.DetailFragment"
         android:label="DetailFragment"
         tools:layout="@layout/fragment_detail">
-
-        />
         <argument
             android:name="listGifs"
             app:argType="com.example.testdeveloperproject.common.body.GifsBody" />
