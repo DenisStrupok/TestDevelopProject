@@ -10,10 +10,10 @@ class GifRepositoryImpl(
     private val gifService: GifService,
 ) : GifRepository {
 
-    override suspend fun getGifsList(limit: Int, offset: Int): GifsModel {
+    override suspend fun getRandomListGifs(limit: Int, offset: Int): GifsModel {
         return try {
             ListGifResponse.mapToDomain(
-                gifService.getGifsList(
+                gifService.getRandomListGifsList(
                     key = BuildConfig.API_KEY,
                     limit = limit,
                     offset = offset

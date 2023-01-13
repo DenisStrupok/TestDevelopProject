@@ -1,11 +1,11 @@
 package com.example.domain.di
 
 import com.example.domain.usecases.FindGifByNameUseCase
-import com.example.domain.usecases.GetGifsUseCase
+import com.example.domain.usecases.GetRandomListGifsUseCase
 import org.koin.dsl.module
 
 private val useCasesModule = module {
-    factory { GetGifsUseCase(get()) }
+    factory { GetRandomListGifsUseCase(get()) }
     factory { FindGifByNameUseCase(get()) }
 }
 

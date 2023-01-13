@@ -2,4 +2,7 @@
     <string name="app_name">TestDeveloperProject</string>#
 
     <string name="home_fragment_enter_name_gif">Enter name</string>
+
+    <string name="dialog_internet_connection_title">"No internet connection"</string>
+    <string name="dialog_internet_connection_message">"For correct work application need turn off internet"</string>
 </resources>

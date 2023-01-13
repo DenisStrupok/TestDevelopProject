@@ -7,6 +7,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.example.domain.model.Gif
 import com.example.testdeveloperproject.R
 import com.example.testdeveloperproject.common.body.GifBody
 import com.example.testdeveloperproject.common.body.GifsBody
@@ -23,21 +24,34 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getGifsList()
+        viewModel.getRandomGifs()
 
         initAdapter()
         initViews()
 
+        observerListRandomGifs()
         observerGifs()
         observerIsEmptyGifsList()
+        observerGifsBody()
     }
 
     private fun observerIsEmptyGifsList() {
         viewModel.isEmptyGifsList.observe(viewLifecycleOwner) { isEmpty ->
             if (isEmpty) {
-                binding.homeGifsRV.visibility = View.GONE
-                gifsAdapter.items.clear()
+                viewModel.randomGifs.value?.clear()
             }
+        }
+    }
+
+    private fun observerListRandomGifs() {
+        viewModel.randomGifs.observe(viewLifecycleOwner) { gifs ->
+            gifsAdapter.items = gifs
+        }
+    }
+
+    private fun observerGifsBody(){
+        viewModel.gifsBody.observe(viewLifecycleOwner){ gifsBody->
+            findNavController().navigate(HomeFragmentDirections.actionOpenDetailFragment(gifsBody))
         }
     }
 
@@ -57,11 +71,14 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         }
         binding.scrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _ ->
             if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
-                offset + 10
+                offset++
                 if (viewModel.nameGif.value?.isNotEmpty() == true) {
-                    viewModel.findGifByName(nameGif = viewModel.nameGif.value.toString(), offset =  offset)
+                    viewModel.findGifByName(
+                        nameGif = viewModel.nameGif.value.toString(),
+                        offset = offset
+                    )
                 } else {
-                    viewModel.getGifsList(offset)
+                    viewModel.getRandomGifs(offset)
                 }
             }
         })
@@ -72,24 +89,11 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     private fun observerGifs() {
         viewModel.gifs.observe(viewLifecycleOwner) { gifs ->
-            binding.homeGifsRV.visibility = View.VISIBLE
-            gifsAdapter.addGifs(gifs?.data)
+            gifsAdapter.items = gifs
         }
     }
 
     private fun actionOpenDetailFragment(selectedGifId: String) {
-        val gifs = GifsBody()
         viewModel.changeSelectedGif(selectedGifId)
-        viewModel.gifs.value?.data?.forEach { gif ->
-            val newGif = GifBody(
-                id = gif.id,
-                url = gif.url,
-                images = gif.images,
-                isSelectedGif = gif.isSelectedGif
-            )
-            gifs.add(newGif)
-        }
-
-        findNavController().navigate(HomeFragmentDirections.actionOpenDetailFragment(gifs))
     }
 }
