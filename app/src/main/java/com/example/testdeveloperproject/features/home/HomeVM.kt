@@ -6,14 +6,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.model.Gif
 import com.example.domain.usecases.FindGifByNameUseCase
-import com.example.domain.usecases.GetGifsUseCase
+import com.example.domain.usecases.GetRandomListGifsUseCase
 import com.example.domain.usecases.ResultCallbacks
 import com.example.testdeveloperproject.common.body.GifBody
 import com.example.testdeveloperproject.common.body.GifsBody
 import com.example.testdeveloperproject.common.extentions.forceRefresh
 
 class HomeVM(
-    private val getGifsListUseCase: GetGifsUseCase,
+    private val getRandomListGifsUseCase: GetRandomListGifsUseCase,
     private val findGifByNameUseCase: FindGifByNameUseCase
 ) : ViewModel() {
 
@@ -31,7 +31,7 @@ class HomeVM(
     val nameGif: LiveData<String> get() = _nameGif
 
     fun getRandomGifs(offset: Int = 0) {
-        getGifsListUseCase.invoke(
+        getRandomListGifsUseCase.invoke(
             uiDispatcher = viewModelScope,
             ResultCallbacks(
                 onSuccess = { gifs ->
@@ -43,7 +43,7 @@ class HomeVM(
                     }
                 }
             ),
-            params = GetGifsUseCase.Params(
+            params = GetRandomListGifsUseCase.Params(
                 limit = LIMIT_PAGE_SIZE,
                 offset = offset
             )
@@ -82,8 +82,7 @@ class HomeVM(
                     gif.isSelectedGif = true
                 }
             }
-        }
-        else {
+        } else {
             this.gifs.value?.forEach { gif ->
                 if (gif.id == selectedGifId) {
                     gif.isSelectedGif = true

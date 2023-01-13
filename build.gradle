@@ -1,7 +1,24 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+    ext {
+        versionSaveAgr = '2.3.5'
+        versionCoreKtx = '1.7.0'
+        versionAppCompat = '1.5.1'
+        versionMaterial = '1.7.0'
+        versionConstraintLayout = '2.1.4'
+        versionKoin = '3.2.2'
+        versionKoinExt = '3.0.2'
+        versionViewBindingDelegate = '1.5.6'
+        versionNavigationKtx = '2.5.3'
+        versionKotlinCoroutines = '1.6.4'
+        versionRecyclerView = '1.2.1'
+        versionGlide = '4.12.0'
+        versionGlideAndroidGif = '1.2.22'
+        versinRetrofit = '2.9.0'
+        versinRetrofitConverter = '2.9.0'
+    }
     dependencies {
-        classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5'
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$versionSaveAgr"
     }
 }
 plugins {

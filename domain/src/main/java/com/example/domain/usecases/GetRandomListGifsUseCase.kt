@@ -4,13 +4,13 @@ import com.example.domain.model.GifsModel
 import com.example.domain.repositories.GifRepository
 import kotlinx.coroutines.*
 
-class GetGifsUseCase(
+class GetRandomListGifsUseCase(
     private val gifRepository: GifRepository
-): BaseUseCase<GifsModel, GetGifsUseCase.Params>() {
+): BaseUseCase<GifsModel, GetRandomListGifsUseCase.Params>() {
 
     override suspend fun remoteWork(params: Params?): GifsModel {
         return withContext(Dispatchers.IO){
-            gifRepository.getGifsList(
+            gifRepository.getRandomListGifs(
                 params!!.limit,
                 params.offset
             )

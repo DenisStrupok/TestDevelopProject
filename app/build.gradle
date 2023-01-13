@@ -41,32 +41,30 @@ dependencies {
     implementation project(':domain')
     implementation project(':data')
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.7.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation "androidx.core:core-ktx:$versionCoreKtx"
+    implementation "androidx.appcompat:appcompat:$versionAppCompat"
+    implementation "com.google.android.material:material:$versionMaterial"
+    implementation "androidx.constraintlayout:constraintlayout:$versionConstraintLayout"
 
     //DI Koin main features for Android (Scope,ViewModel ...)
-    api "io.insert-koin:koin-android:3.3.0"
-    implementation "io.insert-koin:koin-android-ext:3.0.2"
-    implementation "com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.6"
-
+    api "io.insert-koin:koin-android:$versionKoin"
+    implementation "io.insert-koin:koin-android-ext:$versionKoinExt"
+    implementation "com.github.kirich1409:viewbindingpropertydelegate-noreflection:$versionViewBindingDelegate"
 
     //Navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
-    implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
+    implementation "androidx.navigation:navigation-fragment-ktx:$versionNavigationKtx"
+    implementation "androidx.navigation:navigation-ui-ktx:$versionNavigationKtx"
 
     //Coroutines
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versionKotlinCoroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versionKotlinCoroutines"
 
     //RecyclerView
-    implementation "androidx.recyclerview:recyclerview:1.2.1"
-
+    implementation "androidx.recyclerview:recyclerview:$versionRecyclerView"
 
     //Glide
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
+    implementation "com.github.bumptech.glide:glide:$versionGlide"
+    implementation "pl.droidsonroids.gif:android-gif-drawable:$versionGlideAndroidGif"
 
 
     testImplementation 'junit:junit:4.13.2'

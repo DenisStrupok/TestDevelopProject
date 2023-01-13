@@ -7,7 +7,7 @@ import retrofit2.http.Query
 interface GifService {
 
     @GET("gifs/trending")
-    suspend fun getGifsList(
+    suspend fun getRandomListGifsList(
         @Query("api_key") key: String,
         @Query("limit") limit: Int,
         @Query("offset") offset: Int
